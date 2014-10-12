@@ -320,7 +320,7 @@
         }
       }
     };
-    console.log("cordova.exec(mycb, null, 'SQLitePlugin', 'backgroundExecuteSqlBatch', " + JSON.stringify([{dbargs: {dbname: this.db.dbname}, executes: tropts}) + ")");
+    console.log("cordova.exec(mycb, null, 'SQLitePlugin', 'backgroundExecuteSqlBatch', " + JSON.stringify([{dbargs: {dbname: this.db.dbname}, executes: tropts}]) + ")");
     cordova.exec(mycb, null, "SQLitePlugin", "backgroundExecuteSqlBatch", [
       {
         dbargs: {
