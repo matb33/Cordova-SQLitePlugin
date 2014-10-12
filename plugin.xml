@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="com.brodysoft.sqlitePlugin"
-    version="10.0.0">
+    id="me.matb33.sqliteplugin"
+    version="1.0.0">
 
     <name>Brodysoft SQLitePlugin</name>
 

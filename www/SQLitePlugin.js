@@ -127,7 +127,7 @@
   SQLitePlugin.prototype.close = function(success, error) {
     if (this.dbname in this.openDBs) {
       delete this.openDBs[this.dbname];
-      console.log("cordova.exec(success, error, 'SQLitePlugin', 'close', " + JSON.stringify([{path: this.dbname}]) + ")");
+      console.log("cordova.exec(success, error, 'SQLitePlugin', 'close', " + JSON.stringify([{path: this.) + ")");dbname}]
       cordova.exec(success, error, "SQLitePlugin", "close", [
         {
           path: this.dbname
