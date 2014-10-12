@@ -250,7 +250,7 @@
   };
 
   SQLitePluginTransaction.prototype.run = function() {
-    var batchExecutes, handlerFor, i, mycb, mycbmap, qid, request, tropts, tx, txFailure, waiting;
+    var batchExecutes, handlerFor, i, mycb, myerr, mycbmap, qid, request, tropts, tx, txFailure, waiting;
     txFailure = null;
     tropts = [];
     batchExecutes = this.executes;
@@ -306,6 +306,7 @@
       i++;
     }
     mycb = function(result) {
+      console.log("mycb result: " + JSON.stringify(result));
       var q, r, res, type, _i, _len;
       for (_i = 0, _len = result.length; _i < _len; _i++) {
         r = result[_i];
@@ -320,8 +321,11 @@
         }
       }
     };
-    console.log("cordova.exec(mycb, null, 'SQLitePlugin', 'backgroundExecuteSqlBatch', " + JSON.stringify([{dbargs: {dbname: this.db.dbname}, executes: tropts}]) + ")");
-    cordova.exec(mycb, null, "SQLitePlugin", "backgroundExecuteSqlBatch", [
+    myerr = function() {
+      console.log("myerr: " + JSON.stringify(arguments));
+    };
+    console.log("cordova.exec(mycb, myerr, 'SQLitePlugin', 'backgroundExecuteSqlBatch', " + JSON.stringify([{dbargs: {dbname: this.db.dbname}, executes: tropts}]) + ")");
+    cordova.exec(mycb, myerr, "SQLitePlugin", "backgroundExecuteSqlBatch", [
       {
         dbargs: {
           dbname: this.db.dbname
