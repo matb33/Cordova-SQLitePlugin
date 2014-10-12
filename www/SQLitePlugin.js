@@ -109,6 +109,7 @@
     })(this);
     if (!(this.dbname in this.openDBs)) {
       this.openDBs[this.dbname] = true;
+      console.log("cordova.exec(onSuccess, error, 'SQLitePlugin', 'open', " + JSON.stringify([this.openargs]) + ")");
       cordova.exec(onSuccess, error, "SQLitePlugin", "open", [this.openargs]);
     } else {
 
@@ -126,6 +127,7 @@
   SQLitePlugin.prototype.close = function(success, error) {
     if (this.dbname in this.openDBs) {
       delete this.openDBs[this.dbname];
+      console.log("cordova.exec(success, error, 'SQLitePlugin', 'close', " + JSON.stringify([{path: this.dbname}]) + ")");
       cordova.exec(success, error, "SQLitePlugin", "close", [
         {
           path: this.dbname
@@ -318,6 +320,7 @@
         }
       }
     };
+    console.log("cordova.exec(mycb, null, 'SQLitePlugin', 'backgroundExecuteSqlBatch', " + JSON.stringify([{dbargs: {dbname: this.db.dbname}, executes: tropts}) + ")");
     cordova.exec(mycb, null, "SQLitePlugin", "backgroundExecuteSqlBatch", [
       {
         dbargs: {
@@ -426,6 +429,7 @@
     }),
     deleteDb: function(databaseName, success, error) {
       delete SQLitePlugin.prototype.openDBs[databaseName];
+      console.log("cordova.exec(success, error, 'SQLitePlugin', 'delete', " + JSON.stringify([{path: databaseName}]) + ")");      
       return cordova.exec(success, error, "SQLitePlugin", "delete", [
         {
           path: databaseName
